@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<!-- displaying  Username-->
+  <div class="col-md-4">
+    <h3 style="color: white;"> {{user.username| capitalize}} </h3>
+
+    <!--Displaying user bio-->
+    {% if user.bio %}
+      <p style="color: white;"> {{user.bio}}</p>
+    {%else%}
+      <p style="color: white;"> {{user.username| capitalize}} has no bio </p>
+    {% endif %}
+    {% if user == current_user %}
+    <a href="{{url_for('main.update_profile',uname=user.username)}}" style="color: #84cc16;">Edit profile</a>
+    {% endif %}
+  </div>
+
+  <!--Display profile photo-->
+  <div class="col-md-4">
+
+    {% if user.profile_pic_path %}
+    <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+    {%else%}
+    <p style="color:#f8fafc;">No profile picture</p>
+    {% endif %}
+    {% if user == current_user %}
+    <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
+
+      <input type="file"  name="photo" class="form-control" required>
+      <input type="submit">
+    </form>
+      {% endif %}
+  </div>
+  <div class="col-lg-12" id="user">
+          {% if current_user %}
+          <h3 class="text-center fw-bolder p-3 text-decoration-underline border rounded-3" style="color:#f8fafc; font-weight: bolder;">You have {{user.pitches.count()}} Pitches</h3>
+          {% for p in posts%}
+          <div class=" text-center" style="text-align: center;">
+          
+              <h5 style="color:#f8fafc;">Title: {{p.pitch_title}}</h5>
+              <h6 style="color:#f8fafc;">{{p.post}}</h6>
+              <p style="color:#f8fafc;">{{p.comment.count()}} Comments</p>
+          </div>
+            {%endfor%}
+            {%else%}
+            <h3>You have ) posts</h3>
+            {%endif%}
+  
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,4 @@
+Hello {{user.username}}
+Welcome to Awesome Pitches
+We have just seen you have signed up for our application and want to welcome you to the family. 
+Please enjoy the different pitches created by all people registered here and you can post your pitches.
