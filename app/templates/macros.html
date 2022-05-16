@@ -5,11 +5,12 @@
             <div class="well well-lg" id="card4" style="color: #ebf2f4;">
                 <h4>{{posts.title}}</h4>
                 <p>{{posts.post}}</p>
+                <p>{{posts.author}}</p>
             </div>
         </div>
     {%endfor%}
     {%if post %}
-    <!-- <div style="padding-bottom: 15px; text-align: center;"> -->
+    <div>
         <a href="{{url_for('main.new_Blog')}}" class="btn btn-primary">Click to create a Blog</a>
     </div>
     {% endif %}

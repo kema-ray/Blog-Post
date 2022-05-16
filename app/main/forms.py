@@ -6,7 +6,13 @@ class BlogForm(FlaskForm):
 
     title = StringField('Blog title',validators=[InputRequired()])
     post = TextAreaField('Post',validators=[InputRequired()])
+    author=StringField('Author',validators=[InputRequired()])
     submit = SubmitField('Submit')
+
+class UpdateBlog(FlaskForm):
+    title = StringField('Enter title',validators=[InputRequired()])
+    blog = TextAreaField('Edit your blog',validators = [InputRequired()])
+    submit = SubmitField('Submit') 
 
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Bio',validators = [InputRequired()])

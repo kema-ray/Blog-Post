@@ -29,9 +29,10 @@ def new_Blog():
      if form.validate_on_submit():
          title=form.title.data
          post=form.post.data
+         author=form.post.data
          user_id=current_user
 
-         new_blogs_object=Blog(user_id=current_user._get_current_object().id,post=post,title=title)
+         new_blogs_object=Blog(user_id=current_user._get_current_object().id,author=author,post=post,title=title)
          new_blogs_object.save_blog()
          return redirect(url_for('main.index'))
 
