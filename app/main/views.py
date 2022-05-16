@@ -1,3 +1,5 @@
+from email.quoprimime import quote
+from random import random
 from flask import redirect, render_template,url_for,request,abort
 from . import main
 from ..models import Blog,User,Comment,Upvote,Downvote
@@ -5,13 +7,15 @@ from .forms import BlogForm,UpdateProfile,CommentForm
 from flask_login import login_required,current_user
 from .. import db,photos
 import datetime
+from ..request import get_quotes
 
 @main.route('/')
 def index():
 
     title = 'P-Blogs'
+    random_quotes=get_quotes()
     
-    return render_template('index.html',title=title)
+    return render_template('index.html',title=title,quote=random_quotes)
 
 @main.route('/Blog/new',methods=["GET","POST"])
 @login_required
