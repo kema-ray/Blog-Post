@@ -33,3 +33,18 @@ body{
 .blockquote,.Title{
     font-family: 'Oleo Script Swash Caps', cursive;
 }
+.img{
+    height: 250px; 
+    width: 250px; 
+    border-radius: 6px;
+}
+.mybtn{
+    /* display: block; */
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: transparent;
+    color: #3b82f6;
+    border: 1px solid #60a5fa;
+    outline:none;
+    margin: 8px -2px 8px 6px;
+}

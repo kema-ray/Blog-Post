@@ -2,37 +2,37 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="col-md-4">
         <div class="card">
 
             {% if user.profile_pic_path %}
-            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img">
             {%else%}
             <p>No profile picture</p>
             {% endif %}
         
 
             <div class="card-body">
-              <h3> {{user.username| capitalize}} </h3>
+              <h3 style="color: #374151; font-weight:500; font-size:24px;"> {{user.username| capitalize}} </h3>
 
     
                {% if user.bio %}
-               <p> {{user.bio}}</p>
+               <p style="color: #374151; font-weight:500; font-size:16px; margin:0;"> {{user.bio}}</p>
                {%else%}
-               <p> {{user.username| capitalize}} has no bio </p>
+               <p style="color: #374151; font-weight:500; font-size:16px; margin:0;"> {{user.username| capitalize}} has no bio </p>
                {% endif %}
                {% if user == current_user %}
                 <div class="profile">
-                    <div class="main">
-                        <button class="btn btn-sm btn-info" id="btn"><a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a></button>
-                        <button class="btn btn-sm btn-info" id="btn">upload image</button>
+                    <div class="main" style="display: flex; align-items:center;">
+                        <button class="mybtn" id="btn"><a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a></button>
+                        <button class="mybtn" id="btn">upload image</button>
 
                     </div>
                     <div class="image">
                         <form  action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
 
                             <input type="file"  name="photo" class="form-control" required>
-                            <input type="submit" class="btn btn-sm btn-info" style="font-weight: bolder;"id="btn">
+                            <input type="submit" class="mybtn" style="font-weight: bolder;"id="btn">
                         </form>
                     </div>
                 </div>
