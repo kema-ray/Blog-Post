@@ -9,36 +9,9 @@ import datetime
 @main.route('/')
 def index():
 
-    title = 'Awesome blogs'
-
-    # marketing_blogs = Blog.get_blogs('')
-    business_blogs = Blog.get_blogs('business')
-    entertainment_blogs = Blog.get_blogs('entertainment')
-    puns_blogs = Blog.get_blogs('puns')
+    title = 'P-Blogs'
     
-    return render_template('index.html',title = title,business=business_blogs,entertainment=entertainment_blogs,
-    puns=puns_blogs)
-
-@main.route('/blogs/business_blogs')
-def business_blogs():
-
-    blogs = Blog.get_blogs('business')
-
-    return render_template("business_blogs.html", blogs = blogs)
-
-@main.route('/blogs/entertainment_blogs')
-def entertainment_blogs():
-
-    blogs = Blog.get_blogs('entertainment')
-
-    return render_template("entertainment_blogs.html", blogs = blogs)
-
-@main.route('/blogs/puns_blogs')
-def puns_blogs():
-
-    blogs = Blog.get_blogs('puns')
-
-    return render_template("puns_blogs.html", blogs = blogs)
+    return render_template('index.html',title=title)
 
 @main.route('/Blog/new',methods=["GET","POST"])
 @login_required
@@ -46,10 +19,10 @@ def new_Blog():
      Blog_form = BlogForm()
      if Blog_form.validate_on_submit():
          title=Blog_form.title.data
-         Blog=Blog_form.text.data
-         category=Blog_form.category.data
+         post=Blog_form.post.data
+         user_id=current_user
 
-         new_Blog=Blog(Blog_title=title,Blog_content=Blog,user=current_user,category=category)
+         new_Blog=Blog(user_id=current_user,post=post)
          new_Blog.save_Blog()
          return redirect(url_for('.index'))
 
@@ -61,11 +34,11 @@ def profile(uname):
     user = User.query.filter_by(username = uname).first()
     user_id = current_user._get_current_object().id
     posts = Blog.query.filter_by(user_id = user_id).all()
-    blogs_count = Blog.count_blogs(uname)
+    # blogs_count = Blog.count_blogs(uname)
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html", user = user,blogs = blogs_count,posts = posts)
+    return render_template("profile/profile.html", user = user,posts = posts)
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
