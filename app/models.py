@@ -42,9 +42,8 @@ class Blog(db.Model):
     __tablename__ = 'blogs'
 
     id = db.Column(db.Integer,primary_key = True)
-    blog_title = db.Column(db.String)
-    blog_content = db.Column(db.String(1000))
-    blog_content = db.Column(db.String(1000))
+    title = db.Column(db.String(255),nullable=False)
+    post = db.Column(db.Text(), nullable=False)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     upvote = db.relationship('Upvote',backref='blog',lazy='dynamic')
     downvote = db.relationship('Downvote',backref='blog',lazy='dynamic')
