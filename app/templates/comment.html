@@ -10,7 +10,7 @@
                     {% for comment in all_comments %}
                        <div class="card w-90 mb-3" >
                            <div class="card-body">
-                            <h5>{{comment.pitch.title}}</h5>
+                            <h5>{{comment.blog.title}}</h5>
                              <p class="card-title"style="color: white;">{{ comment.comment }}</p>
                              <p class="card-text"style="color: white;">{{comment.user.username}}</p>
                            </div>
@@ -25,10 +25,10 @@
             {%else%}
             <div class="card w-90 mb-3">
                 <div class="card-body">
-                  <p class="card-title" style="color: white;">Be the first to comment</p>
+                  <p class="card-title">Be the first to comment</p>
                 </div>
             </div> 
-            <div class="col-md-5" style="color: white;">
+            <div class="col-md-5">
                     {{wtf.quick_form(form)}}
                 </div>
             {%endif%}

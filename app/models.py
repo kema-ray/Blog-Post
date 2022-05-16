@@ -60,15 +60,14 @@ class Blog(db.Model):
         return user_blogs
 
     @classmethod
-    def viewblogs(cls):
-        blogs = Blog.query.all()
-        return blogs
+    def viewblog(cls):
+        blog = Blog.query.all()
+        return blog
 
     def delete_blog(self):
         db.session.delete(self)
         db.session.commit()
 
-    
 
     def __repr__(self):
         return f'Blog {self.title}'

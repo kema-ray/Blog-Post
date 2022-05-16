@@ -29,7 +29,7 @@ def new_Blog():
      if form.validate_on_submit():
          title=form.title.data
          post=form.post.data
-         author=form.post.data
+         author=form.author.data
          user_id=current_user
 
          new_blogs_object=Blog(user_id=current_user._get_current_object().id,author=author,post=post,title=title)
@@ -78,6 +78,18 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/<blog_id>/',methods=['GET','DELETE'])
+@login_required
+def deleteBlogs(blog_id):
+    deleteBlog = Blog.query.filter_by(id=blog_id).first()
+    if deleteBlog:
+        db.session.delete(deleteBlog)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    else:
+        pass
+    return redirect(url_for('main.index'))
 
 # @main.route('/comment/<int:Blog_id>',methods=['GET','POST'])
 # @login_required
