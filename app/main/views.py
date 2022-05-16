@@ -1,3 +1,4 @@
+from click import edit
 from flask import redirect, render_template,url_for,request,abort
 from . import main
 from ..models import Blog,User
@@ -15,14 +16,14 @@ def index():
     post=Blog.query.all()
     
     return render_template('index.html',title=title,quote=random_quotes,post=post)
-@main.route('/Blog/<int:blog_id>',methods=["GET"])
+@main.route('/blog/<int:blog_id>',methods=["GET"])
 def blog(blog_id):
     form = CommentForm()
     blogs = Blog.query.get(blog_id)
 
     return render_template('blogs.html',blog=blogs,form=form)
 
-@main.route('/Blog/new',methods=["GET","POST"])
+@main.route('/blog/new',methods=["GET","POST"])
 @login_required
 def new_Blog():
      form = BlogForm()
@@ -37,7 +38,7 @@ def new_Blog():
          return redirect(url_for('main.index'))
 
      title = 'New Blog'
-     return render_template('newBlog.html',form=form,title=title)
+     return render_template('newBlog.html',form=form)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -90,6 +91,23 @@ def deleteBlogs(blog_id):
     else:
         pass
     return redirect(url_for('main.index'))
+
+@main.route('/blog/edit/<int:id>',methods=['GET','POST'])
+@login_required
+def editBlogs(id):
+    if not current_user:
+        abort (404)
+    edit_blog=Blog.query.get(id)
+    form = BlogForm()
+    if form.validate_on_submit():
+        edit_blog.title= form.title.data
+        edit_blog.post = form.post.data
+        db.session.add(edit_blog)
+        db.session.commit()
+        return redirect(url_for('main.index',id=edit_blog.id))
+    form.title.data=edit_blog.title
+    form.post.data=edit_blog.post
+    return render_template('newBlog.html',form=form)
 
 # @main.route('/comment/<int:Blog_id>',methods=['GET','POST'])
 # @login_required
