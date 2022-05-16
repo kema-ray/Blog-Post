@@ -1,14 +1,17 @@
-{% macro displayPitches(pitches_list)%}
-    {%for pitch in pitches_list%}
+{% macro displayBlogs(post)%}
+{% if post %}
+    {%for posts in post%}
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
             <div class="well well-lg" id="card4" style="color: #ebf2f4;">
-                <h4>{{pitch.pitch_title}}</h4>
-                <p>{{pitch.pitch_content}}</p>
-                <!-- <p>Written by:  {{pitch.user.username}} <a href="/pitch/{{pitch.id}}" class="btn btn-primary pull-right">Read</a> </p> -->
-                <button><a href="{{url_for('main.like',id=pitch.id)}}"><i class="fa fa-thumbs-up" style="font-size:15px;color: blue;margin-right:5px;"></i>{{pitch.upvote.count()}}</a></button>
-                <button><a href="{{url_for('main.dislike',id=pitch.id)}}"><i class="fa fa-thumbs-down" style="font-size:15px;color: yellowgreen;margin-right:5px;"></i>{{pitch.downvote.count()}}</a></button>
-                <button><a href="{{url_for('main.comment',pitch_id=pitch.id)}}"><i class="fa fa-comment-plus"></i>Comment</a></button>
+                <h4>{{posts.title}}</h4>
+                <p>{{posts.post}}</p>
             </div>
         </div>
     {%endfor%}
+    {%if post %}
+    <!-- <div style="padding-bottom: 15px; text-align: center;"> -->
+        <a href="{{url_for('main.new_Blog')}}" class="btn btn-primary">Click to create a Blog</a>
+    </div>
+    {% endif %}
+    {% endif %}
 {%endmacro%}

@@ -46,6 +46,7 @@ class Blog(db.Model):
     title = db.Column(db.String(255),nullable=False)
     post = db.Column(db.Text(), nullable = False)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    
     def save_blog(self):
         db.session.add(self)
         db.session.commit()

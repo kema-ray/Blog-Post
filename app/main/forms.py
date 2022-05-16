@@ -5,7 +5,7 @@ from wtforms.validators import InputRequired
 class BlogForm(FlaskForm):
 
     title = StringField('Blog title',validators=[InputRequired()])
-    text = TextAreaField('Text',validators=[InputRequired()])
+    post = TextAreaField('Post',validators=[InputRequired()])
     submit = SubmitField('Submit')
 
 class UpdateProfile(FlaskForm):

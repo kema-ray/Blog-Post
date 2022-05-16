@@ -3,17 +3,20 @@
 <title>{{ title }}</title>
 {%block content%}
 <h1>Welcome To Blog Post</h1>
-<div class="container-fluid">
+<!-- <div class="container-fluid"> -->
     <div class="px-4 py-5 my-5 text-center">
         <figure class="text-center text-blue">
             <blockquote class="blockquote">
                 <p>{{quote.quote}}</p>
             </blockquote>
             <figcaption class="footer">
-                <cite title="Title">~~{{quote.author}}</cite>
+                <cite title="Title"> ~~ {{quote.author}}</cite>
             </figcaption>
         </figure>
     </div>
+</div>
+<div>
+    {{macro.displayBlogs(post)}}
 </div>
 
 {%endblock%}

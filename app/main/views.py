@@ -12,8 +12,15 @@ def index():
 
     title = 'P-Blogs'
     random_quotes=get_quotes()
+    post=Blog.query.all()
     
-    return render_template('index.html',title=title,quote=random_quotes)
+    return render_template('index.html',title=title,quote=random_quotes,post=post)
+@main.route('/Blog/<int:blog_id>',methods=["GET"])
+def blog(blog_id):
+    form = CommentForm()
+    blogs = Blog.query.get(blog_id)
+
+    return render_template('blogs.html',blog=blogs,form=form)
 
 @main.route('/Blog/new',methods=["GET","POST"])
 @login_required
@@ -24,11 +31,11 @@ def new_Blog():
          post=form.post.data
          user_id=current_user
 
-         new_Blog=Blog(user_id=current_user,post=post)
-         new_Blog.save_blog()
-         return redirect(url_for('.index'))
+         new_blogs_object=Blog(user_id=current_user._get_current_object().id,post=post,title=title)
+         new_blogs_object.save_blog()
+         return redirect(url_for('main.index'))
 
-    #  title = 'New Blog'
+     title = 'New Blog'
      return render_template('newBlog.html',form=form,title=title)
 
 @main.route('/user/<uname>')
