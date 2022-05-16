@@ -9,6 +9,7 @@
                 <!-- <button style="color: black;"><a href="{{url_for('main.deleteBlogs',blog_id=posts.id)}}">{{posts.deleteBlogs}}</a>Delete</button> -->
                 <a href="{{url_for('main.deleteBlogs',blog_id=posts.id)}}"><button>Delete</button>{{posts.deleteBlogs}}</a>
                 <a href="{{url_for('main.editBlogs',id=posts.id)}}"><button>Edit</button>{{posts.editBlogs}}</a>
+                <a href="{{url_for('main.comment',blog_id=posts.id)}}"> <button>Comment</button></a>
             </div>
         </div>
     {%endfor%}

@@ -21,6 +21,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     blogs = db.relationship('Blog',backref='user',lazy='dynamic')
     password_secure = db.Column(db.String(255))
+    comment = db.relationship('Comment',backref = 'user',lazy = "dynamic")
     # date_joined = db.Column(db.DateTime,default=datetime.utcnow)
     date_joined = db.Column(db.DateTime,default=datetime.utcnow)
 
