@@ -14,7 +14,10 @@
         </div>
       {% endfor %}
       <!-- Login form -->
-      {{wtf.quick_form(login_form)}}
+      <div style="color: black;">
+        {{wtf.quick_form(login_form)}}
+      </div>
+      <!-- {{wtf.quick_form(login_form)}} -->
       <p style="color: black;"> Don't have an account? <a style="color: black;" href="{{url_for('auth.register')}}">Sign up here</a></p>
      </div>
      <div class="col-md-2"> </div>
