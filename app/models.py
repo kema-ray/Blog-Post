@@ -46,15 +46,56 @@ class Blog(db.Model):
     title = db.Column(db.String(255),nullable=False)
     post = db.Column(db.Text(), nullable = False)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    
+    author=db.Column(db.String)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    comment = db.relationship('Comment',backref = 'blog',lazy = "dynamic")
+
     def save_blog(self):
         db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_user_blogs(cls,user):
+        user_blogs = Blog.query.filter_by(user = user).all()
+        return user_blogs
+
+    @classmethod
+    def viewblogs(cls):
+        blogs = Blog.query.all()
+        return blogs
+
+    def delete_blog(self):
+        db.session.delete(self)
         db.session.commit()
 
     
 
     def __repr__(self):
         return f'Blog {self.title}'
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.Text(),nullable = False)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
+    blog_id = db.Column(db.Integer,db.ForeignKey('blogs.id'),nullable = False)
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    @classmethod
+    def view_comments(cls,blog_id):
+        comments = Comment.query.filter_by(blog_id = blog_id).all()
+        return comments
+
+
+    def __repr__(self):
+        return f'comment:{self.comment}' 
 
 
 
