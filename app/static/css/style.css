@@ -22,5 +22,7 @@ body{
 #card3,
 #card4 {
   background-color: #334155;
-  font-family: 'Macondo', cursive;  
+  font-family: 'Macondo', cursive;
+  margin-top: 15%;
+  text-align: center;  
 }
