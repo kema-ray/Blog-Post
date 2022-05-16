@@ -4,14 +4,24 @@
 [Oyondi Kemuma Rachel](https://github.com/kema-ray)
 
 ## Description
-A web application that is built using Python framework(Flask). The app displays pitches according to the various categories,allows one to comment on the pitch that caught their eyes,upvote and downvote a particular pitch also.
+This is a Flask personal blogging website application where one can create and share their opinions and other users can read and comment on them. There is also a feature that displays random quotes to inspire users. This feature consumes an API that allows the display the random quotes.
 ## User Stories
 The user would be able to:
 * See the various blogs that are available.
 * Able see all the blogs that have been posted by other users.
 * User is able to create an account or log in if he or she had an existing one already.
 * Once a user is done viewing,creating or commenting on a blog he or she can click home to be taken to the home page.
+* 
+## Behavior Driven Development(BDD)
+## BDD
 
+| Behavior              |                Input                |                                                                 Output |
+| :-------------------- | :---------------------------------: | ---------------------------------------------------------------------: |
+| Load the page         |          **On page load**           |                        Get all blogs, Select between sign-up and login |
+| Select SignUp         | **Email**,**Username**,**Password** |                                                      Redirect to login |
+| Select Login          |    **Username** and **password**    |                                            Redirect to page with Blogs |
+| Select comment button |             **Comment**             |                                       Form that you input your comment |
+| Click on submit       |                                     | Redirect to all comments template with your comment and other comments |
 
 
 ## Installation
