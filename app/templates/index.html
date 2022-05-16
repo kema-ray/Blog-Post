@@ -2,8 +2,9 @@
 {% import 'macros.html' as macro%}
 <title>{{ title }}</title>
 {%block content%}
-<h1>Welcome To Blog Post</h1>
-<!-- <div class="container-fluid"> -->
+<h2 class="heading">Welcome To Blog Post <br>Feel free to interact will all that was created here.</h2>
+
+<div class="jumbotron">
     <div class="px-4 py-5 my-5 text-center">
         <figure class="text-center text-blue">
             <blockquote class="blockquote">
@@ -14,6 +15,7 @@
             </figcaption>
         </figure>
     </div>
+  </div>
 </div>
 <div>
     {{macro.displayBlogs(post)}}

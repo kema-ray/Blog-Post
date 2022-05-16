@@ -26,3 +26,10 @@ body{
   margin-top: 15%;
   text-align: center;  
 }
+.heading{
+    text-align: center;
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
+.blockquote{
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
