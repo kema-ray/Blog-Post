@@ -1,5 +1,5 @@
 import unittest
-from app.models import Comment,User,Pitch
+from app.models import Comment,User,Blog
 
 class CommentModelTest(unittest.TestCase):
 
@@ -7,7 +7,7 @@ class CommentModelTest(unittest.TestCase):
         self.new_comment = Comment('Interesting')
 
     def tearDown(self):
-        Pitch.query.delete()
+        Blog.query.delete()
         User.query.delete()
 
     def test_instance(self):
